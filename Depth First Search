@@ -1,0 +1,24 @@
+def DFS(S, E):
+  crumbs = Stack()
+  visited = []
+  visited.append(S)
+  crumbs.push(S)
+  # loop until final element of visited is E
+  while visited[-1] != E:
+    #print(current, visited)
+    count = 0
+    # check adj list of current vertex
+    for i in list(G.adj[crumbs.peek()]):
+      # find first unvisited vertex 
+      if i in visited:
+        count += 1
+      else:
+        # move to the unvisited vertex
+        crumbs.push(i)
+        visited.append(i)
+        break
+    # if all adj vertecies have been visited then move back and pop from crumbs
+    if count == len(list(G.adj[crumbs.peek()])):
+      crumbs.pop()
+  print(crumbs.items)
+  #print(visited)
